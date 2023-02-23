@@ -18,21 +18,23 @@
     </script>
     <script>    
         var x = document.getElementById("geo");
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                // Success function 
-                showPosition,
-                // Error function
-                showError,
-                // Options. See MDN for details.
-                {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                });
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
+        setInterval(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success function 
+                    showPosition,
+                    // Error function
+                    showError,
+                    // Options. See MDN for details.
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }, 5000);
         function showPosition(position) {
             x.innerHTML = "Geolocation:<br>" + "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
         }
