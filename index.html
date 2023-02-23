@@ -37,7 +37,7 @@
             }
         }, 2000);
         function showPosition(position) {
-            if (abc.length > 0 && !abc.find(e => e.lat == position.coords.latitude && e.lng == position.coords.longitude)) {
+            if (abc.length > 0 && !(abc.find(e => e.lat == position.coords.latitude) &&  abc.find(e => e.lng == position.coords.longitude))) {
                 abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
             } else if(abc.length == 0){
                 abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
