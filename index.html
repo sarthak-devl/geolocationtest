@@ -18,6 +18,7 @@
     </script>
     <script>    
         var x = document.getElementById("geo");
+        let abc=[];
         setInterval(function () {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -36,13 +37,12 @@
             }
         }, 2000);
         function showPosition(position) {
-            let x=[];
-            if (x.length > 0 && !x.find(e => e.lat == position.coords.latitude && e.lng == position.coords.longitude)) {
-                x.push({ lat: position.coords.latitude, lng: position.coords.longitude })
+            if (abc.length > 0 && !abc.find(e => e.lat == position.coords.latitude && e.lng == position.coords.longitude)) {
+                abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
             } else {
-                x.push({ lat: position.coords.latitude, lng: position.coords.longitude })
+                abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
             }
-            x.innerHTML = "Geolocation:<br>" + "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br> Array Route: " + x;
+            x.innerHTML = "Geolocation:<br>" + "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br> Array Route: " + abc.toString();
         }
         function showError() {
             x.innerHTML = "GPS Disabled";
