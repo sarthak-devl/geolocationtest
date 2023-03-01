@@ -18,28 +18,26 @@
     </script>
     <script>    
         var x = document.getElementById("geo");
-        let abc=[];
-        setInterval(function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    // Success function 
-                    showPosition,
-                    // Error function
-                    showError,
-                    // Options. See MDN for details.
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 5000,
-                        maximumAge: 0
-                    });
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }, 2000);
+        let abc = [];
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                // Success function 
+                showPosition,
+                // Error function
+                showError,
+                // Options. See MDN for details.
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                });
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
         function showPosition(position) {
-            if (abc.length > 0 && !(abc.find(e => e.lat == position.coords.latitude) &&  abc.find(e => e.lng == position.coords.longitude))) {
+            if (abc.length > 0 && !(abc.find(e => e.lat == position.coords.latitude) && abc.find(e => e.lng == position.coords.longitude))) {
                 abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
-            } else if(abc.length == 0){
+            } else if (abc.length == 0) {
                 abc.push({ lat: position.coords.latitude, lng: position.coords.longitude })
             }
             x.innerHTML = "Geolocation:<br>" + "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br> Array Route: " + JSON.stringify(abc);
